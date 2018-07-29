@@ -5,11 +5,15 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { LayoutComponent } from './layout/layout.component';
 import { dashboardRoutes } from './dashboard.routes';
+import { AuthGuard } from '../guards/auth-guard.service';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(dashboardRoutes)
+  ],
+  providers: [
+    AuthGuard
   ],
   declarations: [HomeComponent, AdminComponent, LayoutComponent]
 })
