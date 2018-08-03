@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LayoutComponent } from './layout/layout.component';
 import { dashboardRoutes } from './dashboard.routes';
 import { AuthGuard } from '../guards/auth-guard.service';
+import { RoleGuard } from '../guards/role-guard.service';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { AuthGuard } from '../guards/auth-guard.service';
     RouterModule.forChild(dashboardRoutes)
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    RoleGuard
   ],
   declarations: [HomeComponent, AdminComponent, LayoutComponent]
 })

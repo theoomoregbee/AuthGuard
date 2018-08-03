@@ -3,6 +3,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from '../guards/auth-guard.service';
+import { RoleGuard } from '../guards/role-guard.service';
 
 export const dashboardRoutes: Routes = [
   {
@@ -12,7 +13,11 @@ export const dashboardRoutes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent},
-      { path: 'admin', component: AdminComponent}
+      {
+        path: 'admin', component: AdminComponent,
+        data: {role: 'Admin'},
+        canActivate: [RoleGuard]
+      }
     ]
   }
 ];

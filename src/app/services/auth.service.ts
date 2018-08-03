@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {Observable, pipe, throwError} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
+import decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +34,13 @@ export class AuthService {
   }
 
   loginAdmin(): void {
-    localStorage.setItem('token', `ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnBjM01pT2lKUGJteHBibVVnU2xkVUlFSjFhV3hrWlhKMGFHVnZJaXdpYVdGMElqb3hOVE15T1RBME1UWXdMQ0psZUhBaU9qRTFOalEwTkRBeE5qQXNJbUYxWkNJNkluZDNkeTVsZUdGdGNHeGxMbU52YlNJc0luTjFZaUk2SW5Sb1pXODBkVUI1YldGcGJDNWpiMjBpTENKSGFYWmxiazVoYldVaU9pSktiMmh1Ym5raUxDSlRkWEp1WVcxbElqb2lVbTlqYTJWMElpd2lSVzFoYVd3aU9pSnFjbTlqYTJWMFFHVjRZVzF3YkdVdVkyOXRJaXdpVW05c1pTSTZJbEJ5YjJwbFkzUWdRV1J0YVc1cGMzUnlZWFJ2Y2lKOS55WFd5bmJLaVN1Q25LbU5lN1BZZVZfajRhdnBTaE45bVVrYXExczd1cmhz`);
+    localStorage.setItem('token', `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMyNzM5NjksImV4cCI6MTU2NDgxMDAwNSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiVGVzdCBHdWFyZCIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJyb2xlIjoiQWRtaW4ifQ.rEkg53_IeCLzGHlmaHTEO8KF5BNfl6NEJ8w-VEq2PkE`);
 
     this._router.navigate(['/dashboard']);
   }
 
   login(): void {
-    localStorage.setItem('token', `ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnBjM01pT2lKUGJteHBibVVnU2xkVUlFSjFhV3hrWlhKMGFHVnZJaXdpYVdGMElqb3hOVE15T1RBME1UWXdMQ0psZUhBaU9qRTFOalEwTkRBeE5qQXNJbUYxWkNJNkluZDNkeTVsZUdGdGNHeGxMbU52YlNJc0luTjFZaUk2SW5Sb1pXODBkVUI1YldGcGJDNWpiMjBpTENKSGFYWmxiazVoYldVaU9pSktiMmh1Ym5raUxDSlRkWEp1WVcxbElqb2lVbTlqYTJWMElpd2lSVzFoYVd3aU9pSnFjbTlqYTJWMFFHVjRZVzF3YkdVdVkyOXRJaXdpVW05c1pTSTZJbEJ5YjJwbFkzUWdRV1J0YVc1cGMzUnlZWFJ2Y2lKOS55WFd5bmJLaVN1Q25LbU5lN1BZZVZfajRhdnBTaE45bVVrYXExczd1cmhz`);
+    localStorage.setItem('token', `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MzMyNzM5NjksImV4cCI6MTU2NDgxMDAwNSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiVGVzdCBHdWFyZCIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20ifQ.GA0Y9gYIjmx1jLwuRHuBgZ8m6o-NgkD84nO0ym68CWo`);
 
     this._router.navigate(['/dashboard']);
   }
@@ -50,5 +51,9 @@ export class AuthService {
   logout(): void {
     this.clear();
     this._router.navigate(['/login']);
+  }
+
+  decode() {
+    return decode(localStorage.getItem('token'));
   }
 }
